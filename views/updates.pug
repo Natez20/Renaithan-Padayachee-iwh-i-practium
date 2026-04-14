@@ -1,0 +1,17 @@
+html
+    head
+        title #{title}
+    body
+        h1 Add Office Supply
+        a(href='/') Return to the homepage
+        form(action='/update-cobj' method='POST')
+            label Name
+            input(type='text' name='name')
+            br
+            label Quantity
+            input(type='number' name='quantity')
+            br
+            label Purchase Date
+            input(type='date' name='purchase_date')
+            br
+            button(type='submit') Submit
