@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const validateRecord = require('./utils/validateRecord');
 require('dotenv').config();
 const app = express();
 
@@ -38,6 +39,14 @@ app.get('/update-cobj', (req, res) => {
 //Route 3 - Form submission
 
 app.post('/update-cobj' , async (req , res) => {
+  
+    const errors = validateRecord(req.body);
+
+    if (errors.length > 0 ){
+        return res.status(400).send(errors.join(', '));
+    }
+
+
  const newRecord = {
        properties: {
             name : req.body.name,
